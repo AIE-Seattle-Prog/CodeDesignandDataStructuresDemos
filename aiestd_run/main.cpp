@@ -1,7 +1,18 @@
 #include <iostream>
 #include "TVector.h"
-
 #include <vector>
+
+// POINTER vs REFERENCE?!
+//
+// pointer => a memory address 0x12378129
+//			  can be be reassigned - point to a new object
+//            can be null
+//
+// reference => an alias (refers to something)
+//			    can be initialized once, and only once
+//              must refer to something (though that something might not be valid...)
+
+void PrintVecOfNumbers(const TVector<int> &numbers );
 
 int main()
 {

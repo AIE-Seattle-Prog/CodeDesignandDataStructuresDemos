@@ -25,6 +25,7 @@ public:
 
 	// get a pointer to the raw array
 	T * Data();
+	const T * Data() const;
 
 	// adds an element to the end
 	void Push_Back(const T & value);
@@ -33,6 +34,7 @@ public:
 
 	// get the element at a particular index
 	T & At(size_t index);
+	const T & At(size_t index) const;
 
 	// how many elements are in this TVector?
 	size_t Size() const;
@@ -47,6 +49,7 @@ public:
 
 	// subscript operator
 	T& operator[] (size_t index);
+	const T & operator[] (size_t index) const;
 };
 
 template<typename T>
@@ -105,6 +108,12 @@ T* TVector<T>::Data()
 }
 
 template<typename T>
+const T * TVector<T>::Data() const
+{
+	return arr;
+}
+
+template<typename T>
 void TVector<T>::Push_Back(const T & value)
 {
 	// check to see if we need to allocate more memory
@@ -144,6 +153,18 @@ void TVector<T>::Pop_Back()
 
 template<typename T>
 T & TVector<T>::At(size_t index)
+{
+	// check for out of bounds error
+	// ...
+	// we COULD also throw an exception, though they're rare in
+	// game projects
+	assert(index < arrSize && "Index for 'At' was out of bounds!");
+
+	return arr[index];
+}
+
+template<typename T>
+const T & TVector<T>::At(size_t index) const
 {
 	// check for out of bounds error
 	// ...
@@ -252,6 +273,12 @@ void TVector<T>::Clear()
 
 template<typename T>
 T & TVector<T>::operator[](size_t index)
+{
+	return At(index);
+}
+
+template<typename T>
+const T & TVector<T>::operator[](size_t index) const
 {
 	return At(index);
 }
