@@ -5,9 +5,20 @@
 template <typename T>
 class TQueue
 {
-	TVector<T> data;
+	// position of the front-most value
+	size_t frontIndex;
+	// position of the back-most value
+	size_t backIndex;
+
+	T* data;
+	size_t dataCapacity;
 
 public:
+	TQueue();
+	~TQueue();
+	// copy ctor
+	// copy assign
+
 	void Push(const T & value);
 	void Pop();
 
@@ -17,32 +28,72 @@ public:
 };
 
 template<typename T>
+TQueue<T>::TQueue<T>()
+{
+	frontIndex = 0;
+	backIndex = 0;
+
+	data = new T[1];
+	dataCapacity = 1;
+}
+
+template<typename T>
+TQueue<T>::~TQueue<T>()
+{
+	delete[] data;
+	dataCapacity = 0;
+
+	frontIndex = 0;
+	backIndex = 0;
+}
+
+template<typename T>
 inline void TQueue<T>::Push(const T & value)
 {
-	data.Push_Back(value);
+	// detect if a reallocation is necessary
+	if ((backIndex + 1) % dataCapacity == frontIndex)
+	{
+		size_t size = (backIndex - frontIndex + dataCapacity) % dataCapacity;
+		
+		size_t newCapacity = (dataCapacity + 1) * 2;
+		T * newData = new T[newCapacity];
+		
+		// copy over existing data (if any)
+		for (size_t i = 0; i < size; ++i)
+		{
+			newData[i] = data[(frontIndex + i) % dataCapacity];
+		}
+
+		delete[] data;
+		data = newData;
+		dataCapacity = newCapacity;
+
+		frontIndex = 0;
+		backIndex = size;
+	}
+
+	data[backIndex] = value;
+	backIndex = (backIndex + 1) % dataCapacity;
 }
 
 template<typename T>
 inline void TQueue<T>::Pop()
 {
-	// move all elements to the left by one
-	for (size_t i = 1; i < data.Size(); ++i)
-	{
-		data[i - 1] = data[i];
-	}
+	// TODO: add some error checking
 
-	// pop the last element
-	data.Pop_Back();
+	// destroy data at front index
+	data[frontIndex].~T();
+	frontIndex = (frontIndex + 1) % dataCapacity;
 }
 
 template<typename T>
 inline T & TQueue<T>::Front()
 {
-	return data[0];
+	return data[frontIndex];
 }
 
 template<typename T>
 inline bool TQueue<T>::Empty() const
 {
-	return data.Empty();
+	return frontIndex == backIndex;
 }

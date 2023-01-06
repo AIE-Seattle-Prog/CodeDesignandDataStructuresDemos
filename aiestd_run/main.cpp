@@ -226,10 +226,22 @@ int main()
 	stlQueue.push('A');
 	stlQueue.push('B');
 	stlQueue.push('C');
+	//stlQueue.pop();
+	//stlQueue.pop();
+	//stlQueue.pop();
+	//stlQueue.push('D');
+	//stlQueue.push('E');
+	//stlQueue.push('F');
 
 	myQueue.Push('A');
 	myQueue.Push('B');
 	myQueue.Push('C');
+	//myQueue.Pop();
+	//myQueue.Pop();
+	//myQueue.Pop();
+	//myQueue.Push('D');
+	//myQueue.Push('E');
+	//myQueue.Push('F');
 
 	std::cout << "~STL queue~" << std::endl;
 	while (!stlQueue.empty())
