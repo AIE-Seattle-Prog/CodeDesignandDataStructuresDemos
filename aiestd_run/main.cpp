@@ -2,6 +2,8 @@
 #include "TVector.h"
 #include <vector>
 
+#include <algorithm>
+
 // POINTER vs REFERENCE?!
 //
 // pointer => a memory address 0x12378129
@@ -111,6 +113,63 @@ int main()
 
 	reservingSpace.Push_Back(22);
 	reservingSpace.Push_Back(24);
+
+	std::vector<int> numbs;
+	numbs.push_back(3);
+	numbs.push_back(6);
+	numbs.push_back(9);
+
+	// index based for
+	for (size_t i = 0; i < numbs.size(); ++i)
+	{
+		std::cout << numbs[i] << std::endl;
+	}
+
+	// iterator based for
+	for (auto it = numbs.begin(); it != numbs.end(); ++it)
+	{
+		std::cout << *it << std::endl;
+	}
+
+	// range based for
+	for (int & num : numbs)
+	{
+		std::cout << num << std::endl;
+	}
+
+	TVector<int> vecIter;	// int is 4 bytes
+	vecIter.Push_Back(4);	// 0
+	vecIter.Push_Back(6);   // 4
+	vecIter.Push_Back(10);  // 8
+
+	std::cout << "ITERATOR-based loop" << std::endl;
+	for (auto it = vecIter.begin(); it != vecIter.end(); ++it)
+	{
+		std::cout << *it << std::endl;
+	}
+
+	std::cout << "RANGE-based loop" << std::endl;
+	for (auto & num : vecIter)
+	{
+		std::cout << num << std::endl;
+	}
+
+	auto secondIt = vecIter.begin() + 1;
+	int secondVal = *secondIt;
+
+	std::vector<int> numbersss;
+	numbersss.push_back(3);
+	numbersss.push_back(6);
+	numbersss.push_back(9);
+
+	std::cout << "AFTER REMOVE loop" << std::endl;
+
+	std::remove(numbersss.begin(), numbersss.end(), 6);
+	numbersss.pop_back();
+	for (auto & num : numbersss)
+	{
+		std::cout << num << std::endl;
+	}
 
 	return 0;
 }

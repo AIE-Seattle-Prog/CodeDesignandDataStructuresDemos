@@ -14,6 +14,35 @@ class TVector
 	size_t arrCapacity;
 
 public:
+
+	// TVector<T>::Iterator
+	class Iterator
+	{
+		TVector * vec;
+		size_t cur;
+
+	public:
+		Iterator();
+
+		Iterator(TVector * target, size_t start);
+
+		bool operator==(const Iterator & rhs) const;
+		bool operator!=(const Iterator & rhs) const;
+
+		Iterator operator+(size_t offset);
+
+		// pre-increment
+		// increments and then returns itself
+		Iterator & operator++();
+
+		// post-increment
+		// increment and then returns a copy of its former self
+		// (before it was incremented)
+		Iterator operator++(int);
+
+		T& operator*() const;
+	};
+
 	// constructor
 	TVector();
 	// destructor
@@ -50,6 +79,9 @@ public:
 	// subscript operator
 	T& operator[] (size_t index);
 	const T & operator[] (size_t index) const;
+
+	Iterator begin();
+	Iterator end();
 };
 
 template<typename T>
@@ -281,4 +313,69 @@ template<typename T>
 const T & TVector<T>::operator[](size_t index) const
 {
 	return At(index);
+}
+
+template<typename T>
+typename TVector<T>::Iterator TVector<T>::begin()
+{
+	return Iterator(this, 0);
+}
+
+template<typename T>
+typename TVector<T>::Iterator TVector<T>::end()
+{
+	return Iterator(this, arrSize);
+}
+
+template<typename T>
+TVector<T>::Iterator::Iterator()
+{
+	vec = nullptr;
+	cur = 0;
+}
+
+template<typename T>
+TVector<T>::Iterator::Iterator(TVector * target, size_t start)
+{
+	vec = target;
+	cur = start;
+}
+
+template<typename T>
+bool TVector<T>::Iterator::operator==(const Iterator & rhs) const
+{
+	return vec == rhs.vec && cur == rhs.cur;
+}
+
+
+template<typename T>
+bool TVector<T>::Iterator::operator!=(const Iterator & rhs) const
+{
+	return !((*this) == rhs);
+}
+
+template<typename T>
+typename TVector<T>::Iterator & TVector<T>::Iterator::operator++()
+{
+	++cur;
+	return *this;
+}
+
+template<typename T>
+typename TVector<T>::Iterator TVector<T>::Iterator::operator++(int)
+{
+	++cur;
+	return Iterator(vec, cur - 1);
+}
+
+template<typename T>
+T& TVector<T>::Iterator::operator*() const
+{
+	return (*vec)[cur];
+}
+
+template<typename T>
+typename TVector<T>::Iterator TVector<T>::Iterator::operator+(size_t offset)
+{
+	return Iterator(vec, cur + offset);
 }
