@@ -8,6 +8,7 @@
 
 #include "TVector.h"
 #include "TStack.h"
+#include "TQueue.h"
 
 // POINTER vs REFERENCE?!
 //
@@ -216,6 +217,33 @@ int main()
 		copyOfMyStack.Pop();
 	}
 
+
+	std::cout << "========QUEUE========" << std::endl;
+
+	std::queue<char> stlQueue;
+	TQueue<char> myQueue;
+
+	stlQueue.push('A');
+	stlQueue.push('B');
+	stlQueue.push('C');
+
+	myQueue.Push('A');
+	myQueue.Push('B');
+	myQueue.Push('C');
+
+	std::cout << "~STL queue~" << std::endl;
+	while (!stlQueue.empty())
+	{
+		std::cout << stlQueue.front() << std::endl;
+		stlQueue.pop();
+	}
+
+	std::cout << "~my queue~" << std::endl;
+	while (!myQueue.Empty())
+	{
+		std::cout << myQueue.Front() << std::endl;
+		myQueue.Pop();
+	}
 
 	return 0;
 }
