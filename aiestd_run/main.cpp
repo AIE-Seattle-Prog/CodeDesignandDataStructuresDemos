@@ -1,11 +1,13 @@
 #include <iostream>
-#include "TVector.h"
 #include <vector>
 
 #include <algorithm>
 
 #include <stack>
 #include <queue>
+
+#include "TVector.h"
+#include "TStack.h"
 
 // POINTER vs REFERENCE?!
 //
@@ -173,6 +175,47 @@ int main()
 	{
 		std::cout << num << std::endl;
 	}
+
+	std::cout << "========STACK========" << std::endl;
+
+	std::stack<char> stlStack;
+	TStack<char> myStack;
+
+	stlStack.push('T');
+	stlStack.push('e');
+	stlStack.push('r');
+	stlStack.push('r');
+	stlStack.push('y');
+
+	myStack.Push('T');
+	myStack.Push('e');
+	myStack.Push('r');
+	myStack.Push('r');
+	myStack.Push('y');
+
+	TStack<char> copyOfMyStack = myStack;
+
+	std::cout << "~STL stack~" << std::endl;
+	while (!stlStack.empty())
+	{
+		std::cout << stlStack.top() << std::endl;
+		stlStack.pop();
+	}
+
+	std::cout << "~my stack~" << std::endl;
+	while (!myStack.Empty())
+	{
+		std::cout << myStack.Top() << std::endl;
+		myStack.Pop();
+	}
+
+	std::cout << "~copy of my stack~" << std::endl;
+	while (!copyOfMyStack.Empty())
+	{
+		std::cout << copyOfMyStack.Top() << std::endl;
+		copyOfMyStack.Pop();
+	}
+
 
 	return 0;
 }

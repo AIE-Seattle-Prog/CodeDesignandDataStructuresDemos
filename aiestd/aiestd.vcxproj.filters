@@ -18,5 +18,8 @@
     <ClInclude Include="TVector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TStack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
