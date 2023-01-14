@@ -65,6 +65,9 @@ public:
 	T & At(size_t index);
 	const T & At(size_t index) const;
 
+	T& Back();
+	const T& Back () const;
+
 	// how many elements are in this TVector?
 	size_t Size() const;
 	// how many elements can this TVector store?
@@ -181,6 +184,18 @@ void TVector<T>::Pop_Back()
 	arr[arrSize].~T();
 	// reduce the number of things in the dyn array
 	--arrSize;
+}
+
+template<typename T>
+T & TVector<T>::Back()
+{
+	return At(Size() - 1);
+}
+
+template<typename T>
+const T & TVector<T>::Back() const
+{
+	return At(Size() - 1);
 }
 
 template<typename T>

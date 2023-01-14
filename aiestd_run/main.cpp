@@ -9,6 +9,7 @@
 #include "TVector.h"
 #include "TStack.h"
 #include "TQueue.h"
+#include "TForwardList.h"
 
 // POINTER vs REFERENCE?!
 //
@@ -155,7 +156,7 @@ int main()
 	}
 
 	std::cout << "RANGE-based loop" << std::endl;
-	for (auto & num : vecIter)
+	for (int & num : vecIter)
 	{
 		std::cout << num << std::endl;
 	}
@@ -257,7 +258,18 @@ int main()
 		myQueue.Pop();
 	}
 
+	TForwardList<char> flexibleName;
+	flexibleName.Push_Front('y');
+	flexibleName.Push_Front('r');
+	flexibleName.Push_Front('r');
+	flexibleName.Push_Front('e');
+	flexibleName.Push_Front('T');
 
+	char letter = flexibleName.Front();
+	flexibleName.Front() = 'J';
+
+	flexibleName.Pop_Front(); // removes T
+	flexibleName.Pop_Front(); // removes e
 
 	return 0;
 }

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <forward_list> // singly-linked list
+#include <list>	// NOT TO BE CONFUSED with C# LIST
 
 int main()
 {
@@ -13,7 +14,7 @@ int main()
 
 	// T()
 
-	flexibleNumbers.resize(7);
+	flexibleNumbers.resize(3);
 
 	for (auto & num : flexibleNumbers)
 	{
