@@ -3,6 +3,7 @@ Library/
 Logs/
 obj/
 UserSettings/
+Temp/
 *.csproj
 *.user
 *.sln

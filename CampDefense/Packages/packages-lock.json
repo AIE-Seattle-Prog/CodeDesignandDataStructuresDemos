@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.av.smart-hierarchy": {
+      "version": "https://github.com/neon-age/Smart-Hierarchy.git#master",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "45caa0850b3b285e226687f148a317707f316edc"
+    },
     "com.unity.burst": {
       "version": "1.7.3",
       "depth": 1,

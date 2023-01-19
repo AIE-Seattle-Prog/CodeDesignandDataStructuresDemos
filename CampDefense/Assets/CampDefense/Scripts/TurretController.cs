@@ -7,9 +7,9 @@ public class TurretController : MonoBehaviour
     public float attackInterval = 1.5f;
     private float attackTimer = 0.0f;
 
-    List<EnemyController> enemies = new List<EnemyController>();
-
     public float damagePerAttack = 25.0f;
+
+    private List<EnemyController> enemies = new List<EnemyController>();
 
     private void FixedUpdate()
     {
@@ -17,10 +17,11 @@ public class TurretController : MonoBehaviour
         if(attackTimer > attackInterval &&
            enemies.Count > 0)
         {
-            enemies[0].TakeDamage(damagePerAttack);
-            attackTimer = 0.0f;
 
-            Debug.DrawLine(transform.position, enemies[0].transform.position, Color.red);
+            EnemyController enemyTarget = enemies[0];
+            Debug.DrawLine(transform.position, enemyTarget.transform.position, Color.red);
+            enemyTarget.TakeDamage(damagePerAttack);
+            attackTimer = 0.0f;
         }
     }
 
@@ -28,6 +29,7 @@ public class TurretController : MonoBehaviour
     {
         if(other.TryGetComponent<EnemyController>(out var enemy))
         {
+            enemy.OnDeath.AddListener(HandleEnemyDeath);
             enemies.Add(enemy);
         }
     }
@@ -36,7 +38,13 @@ public class TurretController : MonoBehaviour
     {
         if (other.TryGetComponent<EnemyController>(out var enemy))
         {
+            enemy.OnDeath.RemoveListener(HandleEnemyDeath);
             enemies.Remove(enemy);
         }
+    }
+
+    private void HandleEnemyDeath(EnemyController enemy)
+    {
+        enemies.Remove(enemy);
     }
 }
