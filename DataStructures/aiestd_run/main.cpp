@@ -10,6 +10,7 @@
 #include "TStack.h"
 #include "TQueue.h"
 #include "TForwardList.h"
+#include "TAdjacencyList.h"
 
 // POINTER vs REFERENCE?!
 //
@@ -270,6 +271,38 @@ int main()
 
 	flexibleName.Pop_Front(); // removes T
 	flexibleName.Pop_Front(); // removes e
+
+	// TEST ADJ LIST
+
+	TAdjacencyList<char> adjLetters;
+	auto& vertA = adjLetters.Add('a');
+	auto& vertB = adjLetters.Add('b');
+	auto& vertC = adjLetters.Add('c');
+	auto& vertD = adjLetters.Add('d');
+	auto& vertE = adjLetters.Add('e');
+	auto& vertF = adjLetters.Add('f');
+	auto& vertG = adjLetters.Add('g');
+
+	vertA.AddConnection(vertB);
+	vertA.AddConnection(vertC);
+
+	vertB.AddConnection(vertD);
+
+	vertC.AddConnection(vertE);
+	vertC.AddConnection(vertF);
+
+	vertE.AddConnection(vertG);
+
+	std::cout << "====PRINT BREADTH-FS====" << std::endl;
+	vertA.PrintBFS();
+	std::cout << "====PRINT DEPTH-FS====" << std::endl;
+	vertA.PrintDFS();
+
+	auto vertWithC_BFS = vertA.SearchBFS('c');
+	auto vertWithC_DFS = vertA.SearchDFS('c');
+	
+	auto vertWithZ_BFS = vertA.SearchBFS('z');
+	auto vertWithZ_DFS = vertA.SearchDFS('z');
 
 	return 0;
 }

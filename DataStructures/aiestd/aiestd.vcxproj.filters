@@ -30,5 +30,8 @@
     <ClInclude Include="TList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TAdjacencyList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -78,6 +78,8 @@ public:
 	void Reserve(size_t newCapacity);
 	void Shrink_To_Fit();
 	void Clear();
+	void Remove(const T & valToRemove);
+	bool Contains(const T & searchValue);
 
 	// subscript operator
 	T& operator[] (size_t index);
@@ -316,6 +318,39 @@ void TVector<T>::Clear()
 	{
 		Pop_Back();
 	}
+}
+
+template<typename T>
+void TVector<T>::Remove(const T & valToRemove)
+{
+	// search for the value
+	for(size_t i = 0; i < arrSize; ++i)
+	{
+		if (arr[i] == valToRemove)
+		{
+			// shuffle everything down the line
+			for (size_t j = 1; i + j < arrSize; ++i)
+			{
+				arr[i + j - 1] = arr[i + j];
+			}
+			// remove whatever's at the end
+			Pop_Back();
+		}
+	}
+
+	// TODO: test this!
+}
+
+template<typename T>
+bool TVector<T>::Contains(const T & searchValue)
+{
+	for (auto & val : *this)
+	{
+		if (val == searchValue) { return true; }
+	}
+
+	// search exhausted, value not found
+	return false;
 }
 
 template<typename T>

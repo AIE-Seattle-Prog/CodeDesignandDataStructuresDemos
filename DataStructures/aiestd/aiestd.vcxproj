@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="TAdjacencyList.h" />
     <ClInclude Include="TForwardList.h" />
     <ClInclude Include="TList.h" />
     <ClInclude Include="TQueue.h" />

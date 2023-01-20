@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\terry.nguyen\\source\\repos\\CDDS\\Demo_CSharpLinkedList\\Demo_CSharpLinkedList.csproj",
+      "projectUniqueName": "C:\\Users\\terry.nguyen\\source\\repos\\CDDS\\DataStructures\\Demo_CSharpLinkedList\\Demo_CSharpLinkedList.csproj",
       "projectName": "Demo_CSharpLinkedList",
-      "projectPath": "C:\\Users\\terry.nguyen\\source\\repos\\CDDS\\Demo_CSharpLinkedList\\Demo_CSharpLinkedList.csproj",
+      "projectPath": "C:\\Users\\terry.nguyen\\source\\repos\\CDDS\\DataStructures\\Demo_CSharpLinkedList\\Demo_CSharpLinkedList.csproj",
       "packagesPath": "C:\\Users\\terry.nguyen\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\terry.nguyen\\source\\repos\\CDDS\\Demo_CSharpLinkedList\\obj\\",
+      "outputPath": "C:\\Users\\terry.nguyen\\source\\repos\\CDDS\\DataStructures\\Demo_CSharpLinkedList\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\terry.nguyen\\AppData\\Roaming\\NuGet\\NuGet.Config",

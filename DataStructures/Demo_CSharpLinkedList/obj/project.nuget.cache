@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "J3sGx1ksdnGvotxwq/Nin9ZgO1/IOqZEL8Wg62TCBzKMonhZvNCUxRhAWVRHghrLfRQUnEc4fgHFfbLxgFqhzw==",
+  "dgSpecHash": "kK7sTAiOBcjceDqxE5mhhDOOnnYrOx8hJOtRS1ldyHdqpz4KHIiq4khv+lQOrHSMYTu3DiM4s/74veeYjlN9fw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\terry.nguyen\\source\\repos\\CDDS\\Demo_CSharpLinkedList\\Demo_CSharpLinkedList.csproj",
+  "projectFilePath": "C:\\Users\\terry.nguyen\\source\\repos\\CDDS\\DataStructures\\Demo_CSharpLinkedList\\Demo_CSharpLinkedList.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
