@@ -12,6 +12,9 @@ public class CameraController : MonoBehaviour
 
     public Transform cameraTransform;
 
+    [field: SerializeField]
+    public Camera TargetCamera { get; private set; }
+
     void Update()
     {
         Vector3 playerInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0.0f, Input.GetAxisRaw("Vertical"));
@@ -19,7 +22,7 @@ public class CameraController : MonoBehaviour
         playerInput = Vector3.ClampMagnitude(playerInput, 1.0f);
         playerInput = Quaternion.AngleAxis(transform.rotation.eulerAngles.y, Vector3.up) * playerInput;
 
-        float zoomDelta = -Input.mouseScrollDelta.y * zoomSpeed;
+        float zoomDelta = Input.mouseScrollDelta.y * zoomSpeed;
         zoomLevel += zoomDelta;
         zoomLevel = Mathf.Clamp(zoomLevel, zoomMin, zoomMax);
 

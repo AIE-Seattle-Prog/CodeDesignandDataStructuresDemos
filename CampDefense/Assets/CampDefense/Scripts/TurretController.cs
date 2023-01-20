@@ -11,17 +11,26 @@ public class TurretController : MonoBehaviour
 
     private List<EnemyController> enemies = new List<EnemyController>();
 
+    [SerializeField]
+    private Transform weaponTransform;
+
     private void FixedUpdate()
     {
         attackTimer += Time.deltaTime;
-        if(attackTimer > attackInterval &&
-           enemies.Count > 0)
+        if(enemies.Count > 0)
         {
-
             EnemyController enemyTarget = enemies[0];
-            Debug.DrawLine(transform.position, enemyTarget.transform.position, Color.red);
-            enemyTarget.TakeDamage(damagePerAttack);
-            attackTimer = 0.0f;
+            Vector3 offsetToEnemy = enemyTarget.transform.position - transform.position;
+            weaponTransform.rotation = Quaternion.LookRotation(offsetToEnemy.normalized, Vector3.up);
+
+            // time to attack?
+            if (attackTimer > attackInterval)
+            {
+                Debug.DrawLine(transform.position, enemyTarget.transform.position, Color.red);
+                enemyTarget.TakeDamage(damagePerAttack);
+
+                attackTimer = 0.0f;
+            }
         }
     }
 

@@ -7,6 +7,7 @@ public class CampsiteController : MonoBehaviour
 {
     public static CampsiteController Instance { get; private set; }
 
+    [SerializeField]
     private float health = 20.0f;
     public float Health
     {
